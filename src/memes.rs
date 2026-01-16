@@ -10,3 +10,4 @@ mod lash;
 mod little_do;
 mod mito_sign;
 mod shoot;
+mod jumpscare;

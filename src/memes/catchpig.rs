@@ -132,7 +132,7 @@ fn catchpig(images: Vec<InputImage>, _: Vec<String>, _: NoOptions) -> Result<Vec
         canvas.draw_image(&image, (0, 0), None);
         canvas.draw_image(&self_head, man_locs[i], None);
         canvas.draw_image(&user_head, pig_locs[i], None);
-        Ok(surface.image_snapshot().resize_fit((100, 98), Fit::Cover))
+        Ok(surface.image_snapshot().resize_fit((150, 150), Fit::Cover))
     };
 
     make_gif_or_combined_gif(
