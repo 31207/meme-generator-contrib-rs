@@ -24,7 +24,7 @@ fn mito_sign(images: Vec<InputImage>, texts: Vec<String>, _: NoOptions) -> Resul
         canvas.draw_image(&img, (14, 420), None);
         canvas.draw_image(&frame, (0, 0), None);
         let rect = IRect::from_ltrb(66, 0, 564, 146);
-        canvas.draw_text_area_auto_font_size(rect, text, min_font_size, max_font_size, None);
+        canvas.draw_text_area_auto_font_size(rect, text, min_font_size, max_font_size, None)?;
         Ok(surface.image_snapshot().resize_fit((310, 337), Fit::Cover))
     };
 

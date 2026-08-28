@@ -5,7 +5,7 @@ use meme_generator_utils::{
     builder::InputImage,
     encoder::{FrameAlign, GifInfo, make_gif_or_combined_gif},
     image::{Fit, ImageExt},
-    tools::{local_date},
+    tools::local_date,
 };
 
 use crate::{options::NoOptions, register_meme};
@@ -17,10 +17,10 @@ const GIF_INFO: GifInfo = GifInfo {
 
 fn double_heartbeat(x: f32) -> f32 {
     // 基础配置
-    let peak_1_pos = 0.25;  // 第一个心跳位置
-    let peak_2_pos = 0.65;  // 第二个心跳位置
+    let peak_1_pos = 0.25; // 第一个心跳位置
+    let peak_2_pos = 0.65; // 第二个心跳位置
     let sharpness = 0.011; // 宽度参数（w），越小越尖锐
-    let epsilon = 0.001;   // 确保恒大于零的基底高度
+    let epsilon = 0.001; // 确保恒大于零的基底高度
 
     // 高斯函数：exp(-(x - center)^2 / width)
     let pulse1 = (-(x - peak_1_pos).powi(2) / sharpness).exp();
@@ -51,8 +51,8 @@ fn jumpscare(images: Vec<InputImage>, _: Vec<String>, _: NoOptions) -> Result<Ve
         let dst = [
             Point::new(offset, offset * 1.5),     // 左上向右移
             Point::new(w - offset, offset * 1.5), // 右上向左移
-            Point::new(w, h - offset / 2.0),                     // 右下不动
-            Point::new(0.0, h - offset / 2.0),                   // 左下不动
+            Point::new(w, h - offset / 2.0),      // 右下不动
+            Point::new(0.0, h - offset / 2.0),    // 左下不动
         ];
         let matrix = Matrix::from_poly_to_poly(&src, &dst).unwrap_or_default();
         canvas.concat(&matrix);
@@ -67,12 +67,7 @@ fn jumpscare(images: Vec<InputImage>, _: Vec<String>, _: NoOptions) -> Result<Ve
         Ok(surface.image_snapshot())
     };
 
-    make_gif_or_combined_gif(
-        images,
-        func,
-        GIF_INFO,
-        FrameAlign::NoExtend,
-    )
+    make_gif_or_combined_gif(images, func, GIF_INFO, FrameAlign::NoExtend)
 }
 
 register_meme!(
